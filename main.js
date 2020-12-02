@@ -1,7 +1,5 @@
-setTimeout(() => {
-  require([], (require) => {
-    let number = require("./number");
+import {n} from './number';
 
-    console.log(number.n);
-  });
-}, 1000);
+import {str1} from './str';
+
+console.log('main', str1);

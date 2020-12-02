@@ -1,7 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./main",
+  entry: {
+    main: "./main",
+    // main1: './main1'
+  },
 
   mode: "none",
   // module: {
@@ -19,6 +22,19 @@ module.exports = {
   //     test: 123,
   //   }),
   // ],
+  optimization: {
+    concatenateModules: true,
+    // 提取runtime代码到common.js文件中
+    runtimeChunk: {
+      name: 'common'
+    },
+    // 提取公共部分为common.js，使劲地提取吧.. 
+    splitChunks: {
+        name: 'common',
+        chunks: 'all',
+        minSize: 1
+    }
+  },
 
   output: {
     publicPath: "./dist/",

@@ -1,5 +1,3 @@
-let user = require('./number');
-let user1 = require('./number2');
+import './chunk';
 
-console.log('user', user);
-console.log('user1', user1);
+console.log('test');
