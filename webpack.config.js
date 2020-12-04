@@ -1,44 +1,20 @@
-const path = require("path");
+const path = require('path') // 路径处理模块
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin') // 引入CleanWebpackPlugin插件
 
 module.exports = {
   entry: {
-    main: "./main",
-    // main1: './main1'
+    index: path.join(__dirname, '/src/main.js'),
   },
-
-  mode: "none",
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.css$/,
-  //       loader: path.resolve("./loader.js"),
-  //       exclude: path.resolve(__dirname) + "./node_modules/", //排除哪个文件不转换
-  //       options: { css: 123 }, //"presets:['es2015']"
-  //     },
-  //   ],
-  // },
-  // plugins: [
-  //   new todayPlugin({
-  //     test: 123,
-  //   }),
-  // ],
-  optimization: {
-    concatenateModules: true,
-    // 提取runtime代码到common.js文件中
-    runtimeChunk: {
-      name: 'common'
-    },
-    // 提取公共部分为common.js，使劲地提取吧.. 
-    splitChunks: {
-        name: 'common',
-        chunks: 'all',
-        minSize: 1
-    }
-  },
-
   output: {
-    publicPath: "./dist/",
-    path: path.resolve(__dirname, "./dist"),
-    filename: "[name].js",
+    path: path.join(__dirname, '/dist'),
+    filename: 'index.js',
   },
-};
+  mode: "none",
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, '/index.html'),
+    }),
+    new CleanWebpackPlugin(), // 所要清理的文件夹名称
+  ],
+}
